@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32630.192
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ensilog.Engagebay", "Ensilog.Engagebay\Ensilog.Engagebay.csproj", "{2B8B9027-B56A-4C08-A16F-D08BDC21364E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ensilog.Engagebay.Tests", "Ensilog.Engagebay.Tests\Ensilog.Engagebay.Tests.csproj", "{05C885B4-E1E4-4C9B-83CF-A9EAC6346DEB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2B8B9027-B56A-4C08-A16F-D08BDC21364E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2B8B9027-B56A-4C08-A16F-D08BDC21364E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2B8B9027-B56A-4C08-A16F-D08BDC21364E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2B8B9027-B56A-4C08-A16F-D08BDC21364E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{05C885B4-E1E4-4C9B-83CF-A9EAC6346DEB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{05C885B4-E1E4-4C9B-83CF-A9EAC6346DEB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{05C885B4-E1E4-4C9B-83CF-A9EAC6346DEB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{05C885B4-E1E4-4C9B-83CF-A9EAC6346DEB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4D77F14F-4C6D-4ACB-B0AD-A0409B80B8EA}
+	EndGlobalSection
+EndGlobal

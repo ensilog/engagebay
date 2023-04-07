@@ -1,0 +1,27 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <UserSecretsId>1acf9f5d-185e-4df6-928e-f9437010ec20</UserSecretsId>
+    <Company>Ensilog</Company>
+    <Authors>Chinouchi</Authors>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <RepositoryUrl>https://github.com/ensilog/engagebay</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>engagebay;api;wrapper</PackageTags>
+    <Description>This library is a wrapper around the Engagebay REST Api that eases its usage by using C#.</Description>
+    <Title>Engagebay API C# Wrapper</Title>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="RestSharp" Version="110.1.0" />
+  </ItemGroup>
+
+</Project>
