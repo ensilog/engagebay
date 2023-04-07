@@ -1,3 +1,5 @@
+name: "Engagebay API Wrapper by Ensilog"
+
 trigger:
   branches:
     exclude:
@@ -50,7 +52,7 @@ stages:
 - stage: PublishNuGet
   displayName: 'Publish NuGet Package'
   dependsOn: BuildAndTest
-  condition: startsWith(variables['Build.SourceBranch'], 'refs/tags/v')
+  condition: and(startsWith(variables['Build.SourceBranch'], 'refs/tags/v'), succeeded('BuildAndTest'))
   jobs:
   - job: Publish
     displayName: 'Publish NuGet Package'
