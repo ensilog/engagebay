@@ -1,0 +1,85 @@
+trigger:
+  branches:
+    exclude:
+      - "*"
+  tags:
+    include:
+      - "v*"
+
+pr:
+  branches:
+    include:
+      - "*"
+
+stages:
+- stage: BuildAndTest
+  displayName: 'Build and Test'
+  jobs:
+  - job: Build
+    displayName: 'Build and Test Solution'
+    pool:
+      vmImage: 'windows-latest'
+    steps:
+    - task: NuGetToolInstaller@1
+
+    - task: NuGetCommand@2
+      inputs:
+        command: 'restore'
+        restoreSolution: '**/*.sln'
+
+    - task: VSBuild@1
+      inputs:
+        solution: '**/*.sln'
+        msbuildArgs: '/p:CollectCoverage=true /p:CoverletOutputFormat=cobertura /p:Exclude="[xunit*]*%2c[Microsoft*]*"'
+        configuration: 'Release'
+
+    - task: VSTest@2
+      inputs:
+        testAssemblyVer2: |
+          **\*test*.dll
+          !**\*TestAdapter.dll
+          !**\obj\**
+        testRunTitle: 'Unit tests'
+        codeCoverageEnabled: true
+
+    - task: PublishCodeCoverageResults@1
+      inputs:
+        codeCoverageTool: 'cobertura'
+        summaryFileLocation: '$(System.DefaultWorkingDirectory)/**/coverage.cobertura.xml'
+
+- stage: PublishNuGet
+  displayName: 'Publish NuGet Package'
+  dependsOn: BuildAndTest
+  condition: startsWith(variables['Build.SourceBranch'], 'refs/tags/v')
+  jobs:
+  - job: Publish
+    displayName: 'Publish NuGet Package'
+    pool:
+      vmImage: 'windows-latest'
+    steps:
+    - task: NuGetToolInstaller@1
+
+    - powershell: |
+        $tag = "$(Build.SourceBranchName)"
+        $isBeta = $tag.EndsWith("beta")
+        $version = $tag.TrimStart("v").TrimEnd("beta").TrimEnd("-")
+        if ($isBeta) {
+          $version = "$version-prerelease-$(Build.BuildNumber)"
+        }
+        Write-Host "##vso[task.setvariable variable=version]$version"
+      displayName: 'Extract version from tag'
+
+    - task: NuGetCommand@2
+      inputs:
+        command: 'pack'
+        packagesToPack: '**/Ensilog.Engagebay.csproj'
+        versioningScheme: 'byEnvVar'
+        versionEnvVar: 'version'
+
+    - task: NuGetCommand@2
+      inputs:
+        command: 'push'
+        packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg'
+        nuGetFeedType: 'external'
+        publishFeedCredentials: 'NuGet.org'
+
