@@ -64,10 +64,10 @@ jobs:
       run: dotnet restore
 
     - name: Build
-      run: dotnet build --configuration Release --no-restore -p:Version=${{ steps.extract_version.outputs.version }}${{ steps.extract_version.outputs.suffix }}
+      run: dotnet build --configuration Release --no-restore /p:Version=${{ steps.extract_version.outputs.version }}${{ steps.extract_version.outputs.suffix }}
 
     - name: Pack
-      run: dotnet pack --configuration Release --no-build --output nupkgs
+      run: dotnet pack --configuration Release --no-build --output nupkgs /p:Version=${{ steps.extract_version.outputs.version }}${{ steps.extract_version.outputs.suffix }}
 
     - name: Publish
-      run: dotnet nuget push nupkgs/*.nupkg -k ${{ secrets.NUGET_API_KEY }} -s https://api.nuget.org/v3/index.json
+      run: dotnet nuget push nupkgs/Ensilog.Engagebay.${{ steps.extract_version.outputs.version }}${{ steps.extract_version.outputs.suffix }}.nupkg -k ${{ secrets.NUGET_API_KEY }} -s https://api.nuget.org/v3/index.json
