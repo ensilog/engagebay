@@ -4,7 +4,7 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <UserSecretsId>1acf9f5d-185e-4df6-928e-f9437010ec20</UserSecretsId>
     <Company>Ensilog</Company>
-    <Authors>Chinouchi</Authors>
+    <Authors>Chinouchi (Antoine BERNARD)</Authors>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <RepositoryUrl>https://github.com/ensilog/engagebay</RepositoryUrl>
     <RepositoryType>git</RepositoryType>

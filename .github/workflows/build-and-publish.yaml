@@ -1,0 +1,73 @@
+name: EngageBay Wrapper CI/CD
+
+on:
+  pull_request:
+    branches:
+      - main
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  build-and-test:
+    runs-on: windows-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: '6.0.x'
+
+    - name: Restore dependencies
+      run: dotnet restore
+
+    - name: Build
+      run: dotnet build --configuration Release --no-restore
+
+    - name: Test
+      run: dotnet test --no-restore --verbosity normal --collect:"XPlat Code Coverage" --settings coverlet.runsettings
+
+    - name: Publish code coverage
+      uses: actions/upload-artifact@v2
+      with:
+        name: code-coverage
+        path: '**/TestResults/*/coverage.cobertura.xml'
+
+  publish-nuget:
+    needs: build-and-test
+    if: startsWith(github.ref, 'refs/tags/v')
+    runs-on: windows-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: '6.0.x'
+
+    - name: Extract version from tag
+      id: extract_version
+      shell: pwsh
+      run: |
+        $Tag = '${{ github.ref }}'.Substring(11)
+        $Version = $Tag -replace '-beta$', ''
+        $Suffix = if ($Tag.EndsWith('beta')) { "-beta.${{ github.run_number }}" } else { '' }
+        echo "Version: $Version"
+        echo "Suffix: $Suffix"
+        echo "::set-output name=version::$Version"
+        echo "::set-output name=suffix::$Suffix"
+
+    - name: Restore dependencies
+      run: dotnet restore
+
+    - name: Build
+      run: dotnet build --configuration Release --no-restore -p:Version=${{ steps.extract_version.outputs.version }}${{ steps.extract_version.outputs.suffix }}
+
+    - name: Pack
+      run: dotnet pack --configuration Release --no-build --output nupkgs
+
+    - name: Publish
+      run: dotnet nuget push nupkgs/*.nupkg -k ${{ secrets.NUGET_API_KEY }} -s https://api.nuget.org/v3/index.json
