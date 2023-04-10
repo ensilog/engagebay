@@ -6,6 +6,11 @@ using RestSharp;
 
 namespace Ensilog.Engagebay.Contacts
 {
+    /// <summary>
+    /// Add score to contact by email
+    /// /!\ This request is currently not working as it returns a HTTP METHOD NOT ALLOWED error /!\
+    /// Further investigation is needed
+    /// </summary>
     public class AddScoreToContactByEmail : EngageBayCommand
     {
         public override Method Method => Method.Post;
