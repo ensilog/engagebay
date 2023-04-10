@@ -60,21 +60,17 @@ jobs:
       shell: pwsh
       run: |
         $Tag = '${{ github.ref }}'.Substring(11)
-        $Version = $Tag -replace '-beta$', ''
-        $Suffix = if ($Tag.EndsWith('beta')) { "-beta.${{ github.run_number }}" } else { '' }
-        echo "version: $Version"
-        echo "suffix: $Suffix"
-        echo "version=$Version" >> $GITHUB_OUTPUT
-        echo "suffix=$Suffix" >> $GITHUB_OUTPUT
+        echo "version: $Tag"
+        echo "version=$Tag" >> $GITHUB_OUTPUT
 
     - name: Restore dependencies
       run: dotnet restore
 
     - name: Build
-      run: dotnet build --configuration Release --no-restore /p:Version=${{ steps.extract_version.outputs.version }}${{ steps.extract_version.outputs.suffix }}
+      run: dotnet build --configuration Release --no-restore /p:Version=${{ steps.extract_version.outputs.version }}
 
     - name: Pack
-      run: dotnet pack --configuration Release --no-build --output nupkgs /p:Version=${{ steps.extract_version.outputs.version }}${{ steps.extract_version.outputs.suffix }}
+      run: dotnet pack --configuration Release --no-build --output nupkgs /p:Version=${{ steps.extract_version.outputs.version }}
 
     - name: Publish
-      run: dotnet nuget push nupkgs/Ensilog.Engagebay.${{ steps.extract_version.outputs.version }}${{ steps.extract_version.outputs.suffix }}.nupkg -k ${{ secrets.NUGET_API_KEY }} -s https://api.nuget.org/v3/index.json
+      run: dotnet nuget push nupkgs/Ensilog.Engagebay.${{ steps.extract_version.outputs.version }}.nupkg -k ${{ secrets.NUGET_API_KEY }} -s https://api.nuget.org/v3/index.json
