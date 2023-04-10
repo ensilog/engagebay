@@ -104,51 +104,51 @@ Here is the status of the implemented endpoints in this wrapper. ✅ means that 
 | [Search deals](https://github.com/engagebay/restapi#36-search-deals) | | ❌ |
 | [Update deal track](https://github.com/engagebay/restapi#37-update-deal-track) | | ❌ |
 | [Updating a deal](https://github.com/engagebay/restapi#38-update-properties-of-a-deal-by-id-partial-update) | | ❌ |
-| **Tracks** | | |
+| **4. Tracks** | | |
 | [Get all tracks](https://github.com/engagebay/restapi#41-get-all-tracks) | | ❌ |
 | [Create track](https://github.com/engagebay/restapi#42-create-track) | | ❌ |
 | [Update track](https://github.com/engagebay/restapi#43-update-track) | | ❌ |
 | [Get track by ID](https://github.com/engagebay/restapi#44-get-track-by-id) | | ❌ |
 | [Delete track by ID](https://github.com/engagebay/restapi#45-delete-track-by-id) | | ❌ |
-| **Events** | | |
+| **5. Events** | | |
 | [Get list of events](https://github.com/engagebay/restapi#51-get-list-of-events) | | ❌ |
 | [Get events related to contact](https://github.com/engagebay/restapi#52-get-events-related-to-contact) | | ❌ |
 | [Create event](https://github.com/engagebay/restapi#53-create-event) | | ❌ |
 | [Update event](https://github.com/engagebay/restapi#54-update-event) | | ❌ |
-| **Tasks** | | |
+| **6. Tasks** | | |
 | [Get the list of tasks based on given filters](https://github.com/engagebay/restapi#61-get-the-list-of-tasks-based-on-given-filters) | | ❌ |
 | [Get the task based on ID](https://github.com/engagebay/restapi#62-get-the-task-based-on-id) | | ❌ |
 | [Create task](https://github.com/engagebay/restapi#63-create-task) | | ❌ |
 | [Update task](https://github.com/engagebay/restapi#64-update-task) | | ❌ |
 | [Delete a task based on ID](https://github.com/engagebay/restapi#65-delete-a-task-based-on-id) | | ❌ |
-| **Notes** | | |
+| **7. Notes** | | |
 | [Create a note](https://github.com/engagebay/restapi#71-create-a-note) | | ❌ |
-| **Forms** | | |
+| **8. Forms** | | |
 | [List of forms](https://github.com/engagebay/restapi#81-list-of-forms) | | ❌ |
 | [Add contact to a form](https://github.com/engagebay/restapi#82-add-contact-to-a-form) | | ❌ |
-| **Sequences** | | |
+| **9. Sequences** | | |
 | [Add contact to a sequence](https://github.com/engagebay/restapi#91-add-contact-to-a-sequence) | | ❌ |
-| **Lists** | | |
+| **10. Lists** | | |
 | [List of lists](https://github.com/engagebay/restapi#101-list-of-lists) | | ❌ |
 | [Add contact to list](https://github.com/engagebay/restapi#102-add-contact-to-list) | | ❌ |
-| **Owners** | | |
+| **11. Owners** | | |
 | [Get list of owners](https://github.com/engagebay/restapi#111-get-list-of-owners) | | ❌ |
-| **CustomFields** | | |
+| **12. CustomFields** | | |
 | [Get list of custom fields](https://github.com/engagebay/restapi#121-get-list-of-custom-fields) | | ❌ |
 | [Create a custom field](https://github.com/engagebay/restapi#122-create-a-custom-field) | | ❌ |
 | [Delete a custom field](https://github.com/engagebay/restapi#123-delete-a-custom-field-) | | ❌ |
-| **User Profile** | | |
+| **13. User Profile** | | |
 | [Get user profile](https://github.com/engagebay/restapi#131-get-user-profile-) | | ❌ |
-| **Tickets** | | |
+| **14. Tickets** | | |
 | [Listing tickets](https://github.com/engagebay/restapi#141-get-list-of-tickets) | | ❌ |
 | [Listing tickets by filter](https://github.com/engagebay/restapi#142-get-list-of-tickets-by-filter) | | ❌ |
 | [Get ticket by ID](https://github.com/engagebay/restapi#145-get-ticket-by-id) | | ❌ |
 | [Create a ticket](https://github.com/engagebay/restapi#143-create-a-ticket) | | ❌ |
 | [Delete a ticket](https://github.com/engagebay/restapi#144-delete-a-ticket) | | ❌ |
-| **Tags** | | |
+| **15. Tags** | | |
 | [List of Tags](https://github.com/engagebay/restapi#151-list-of-tags) | | ❌ |
 | [Add Tag](https://github.com/engagebay/restapi#152-add-tag) | | ❌ |
-| **Products** | | |
+| **16. Products** | | |
 | [List of products](https://github.com/engagebay/restapi#161-list-of-products) | | ❌ |
 | [Get product by ID](https://github.com/engagebay/restapi#162-get-product-by-id) | | ❌ |
 | [Create a product](https://github.com/engagebay/restapi#163-creating-a-product) | | ❌ |
@@ -158,7 +158,7 @@ Here is the status of the implemented endpoints in this wrapper. ✅ means that 
 | [Delete single product](https://github.com/engagebay/restapi#167-delete-single-product) | | ❌ |
 | [Add a product to contact](https://github.com/engagebay/restapi#168-add-a-product-to-contact) | | ❌ |
 | [Delete a product from contact](https://github.com/engagebay/restapi#169-delete-a-product-from-contact) | | ❌ |
-| **Broadcast** | | |
+| **17. Broadcast** | | |
 | [Create a Broadcast](https://github.com/engagebay/restapi#171-creating-a-broadcast) | | ❌ |
 
 
