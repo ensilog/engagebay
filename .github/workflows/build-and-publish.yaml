@@ -45,7 +45,7 @@ jobs:
   publish-nuget:
     needs: build-and-test
     if: startsWith(github.ref, 'refs/tags/v')
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     steps:
     - name: Checkout
       uses: actions/checkout@v2
@@ -61,14 +61,13 @@ jobs:
       run: |
         $Tag = '${{ github.ref }}'.Substring(11)
         echo "version: $Tag"
-        echo "version=$Tag" >> $GITHUB_OUTPUT
+        "version=$Tag" >> $GITHUB_OUTPUT
 
     - name: Restore dependencies
       run: dotnet restore
 
     - name: Build
       run: dotnet build --configuration Release --no-restore /p:Version=${{ steps.extract_version.outputs.version }}
-
     - name: Pack
       run: dotnet pack --configuration Release --no-build --output nupkgs /p:Version=${{ steps.extract_version.outputs.version }}
 
