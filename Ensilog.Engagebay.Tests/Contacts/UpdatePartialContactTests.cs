@@ -8,7 +8,7 @@ using System.Text.Json;
 
 namespace Ensilog.Engagebay.Tests.Contacts
 {
-    public class UpdateContactTests
+    public class UpdatePartialContactTests
     {
         [Fact]
         public void ContactWithAllAttributes_Should_CreateCorrectRequest()
