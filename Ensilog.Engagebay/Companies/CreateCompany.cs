@@ -1,18 +1,15 @@
 ﻿using Ensilog.Engagebay.Abstractions;
 using Ensilog.Engagebay.Companies.Exceptions;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Ensilog.Engagebay.Companies
 {
-    public class CreateCompany : EngageBayCommand<Company>
+    public class CreateCompany : EngageBayCommand<CreateCompanyBody>
     {
         public override string Uri => "/dev/api/panel/companies/company";
 
-        public override Company Body => _body;
+        public override CreateCompanyBody Body => _body;
 
-        private Company _body;
+        private CreateCompanyBody _body;
 
         public CreateCompany(Company company)
         {
@@ -21,7 +18,9 @@ namespace Ensilog.Engagebay.Companies
                 throw new CompanyNullException(nameof(company));
             }
 
-            _body = company;
+            _body = new CreateCompanyBody();
+            _body.Properties = company.ExtractAllProperties();
+            _body.Tags = company.Tags;
         }
     }
 

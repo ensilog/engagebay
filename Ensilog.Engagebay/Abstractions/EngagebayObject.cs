@@ -29,6 +29,20 @@ namespace Ensilog.Engagebay.Abstractions
         [JsonPropertyName("properties")]
         public IEnumerable<Property> OtherProperties { get; set; }
 
-        public abstract IEnumerable<Property> ExtractAllProperties();
+        public virtual IEnumerable<Property> ExtractAllProperties()
+        {
+            if (Score.HasValue)
+                yield return EngagebayKnownProperties.Score.WithValue(Score.Value);
+
+            if (CreatedTime != default)
+                yield return EngagebayKnownProperties.CreatedTime.WithValue(CreatedTime);
+
+            if (UpdatedTime != default)
+                yield return EngagebayKnownProperties.UpdatedTime.WithValue(UpdatedTime);
+
+            if (OtherProperties != null)
+                foreach (var property in OtherProperties)
+                    yield return property;
+        }
     }
 }

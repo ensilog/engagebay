@@ -45,6 +45,11 @@ namespace Ensilog.Engagebay.Contacts
 
         public override IEnumerable<Property> ExtractAllProperties()
         {
+            foreach (var pr in base.ExtractAllProperties())
+            {
+                yield return pr;
+            }
+
             if (FirstName != null)
                 yield return ContactKnownProperties.FirstName.WithValue(FirstName);
 
@@ -57,22 +62,14 @@ namespace Ensilog.Engagebay.Contacts
             if (Phone != null)
                 yield return ContactKnownProperties.PhoneWork.WithValue(Phone);
 
-            if (Address != null)
-                yield return ContactKnownProperties.Address.WithValue(JsonSerializer.Serialize(Address));
-
             if (Role != null)
                 yield return ContactKnownProperties.Role.WithValue(Role);
 
+            if(Address != null)
+                yield return ContactKnownProperties.Address.WithValue(JsonSerializer.Serialize(Address));
+
             if (Website != null)
                 yield return ContactKnownProperties.WebsiteUrl.WithValue(Website);
-
-            if (OtherProperties != null && OtherProperties.Any())
-            {
-                foreach (var property in OtherProperties)
-                {
-                    yield return property;
-                }
-            }
         }
     }
 }

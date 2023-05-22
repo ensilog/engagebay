@@ -42,7 +42,7 @@
 
         public static Property CreateCustomProperty(string name, PropertyFieldType type = null)
         {
-            return CreateCustomProperty(name, type);
+            return CreateCustomProperty(name, null, type);
         }
     }
 }

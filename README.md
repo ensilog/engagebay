@@ -87,7 +87,7 @@ Here is the status of the implemented endpoints in this wrapper. ✅ means that 
 | [Get contact notes](https://github.com/engagebay/restapi#117-get-contact-notes) | GetNotesByContactId | ✅ |
 | [Get contact call logs](https://github.com/engagebay/restapi#118-get-contact-call-logs) | GetContactCallLogs | ✅ |
 | **2. Company APIs** | | |
-| [Creating a company](https://github.com/engagebay/restapi#21-creating-a-company) | | ❌ |
+| [Creating a company](https://github.com/engagebay/restapi#21-creating-a-company) | | ✅ |
 | [Updating a company](https://github.com/engagebay/restapi#22-update-properties-of-a-company-by-id-partial-update) | | ❌ |
 | [Get list of companies](https://github.com/engagebay/restapi#23-get-list-of-companies) | | ❌ |
 | [Get company by id](https://github.com/engagebay/restapi#24-get-company-by-id) | | ❌ |

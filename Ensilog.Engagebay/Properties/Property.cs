@@ -1,11 +1,15 @@
 ﻿using Ensilog.Engagebay.Abstractions;
+using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Text.Json.Serialization;
 
 namespace Ensilog.Engagebay.Properties
 {
     public class Property : ValueObject
     {
+        public static string DatePropertyFormat = "dd/MM/yyyy";
+
         [JsonPropertyName("name")]
         public string Name { get; set; }
 
@@ -34,6 +38,24 @@ namespace Ensilog.Engagebay.Properties
         public Property WithValue(string value)
         {
             Value = value;
+            return this;
+        }
+
+        public Property WithValue(int value)
+        {
+            Value = value.ToString();
+            return this;
+        }
+
+        public Property WithValue(DateTime value)
+        {
+            Value = value.ToString(DatePropertyFormat);
+            return this;
+        }
+
+        public Property WithValue(float value)
+        {
+            Value = value.ToString("F", CultureInfo.InvariantCulture);
             return this;
         }
 

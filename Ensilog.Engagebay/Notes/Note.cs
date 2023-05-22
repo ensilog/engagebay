@@ -1,6 +1,8 @@
 ﻿using Ensilog.Engagebay.Abstractions;
 using Ensilog.Engagebay.Json;
+using Ensilog.Engagebay.Properties;
 using System;
+using System.Collections.Generic;
 using System.Text.Json.Serialization;
 
 namespace Ensilog.Engagebay.Notes
@@ -33,5 +35,10 @@ namespace Ensilog.Engagebay.Notes
 
         [JsonPropertyName("createFollowUpTask")]
         public bool CreateFollowUpTask { get; set; }
+
+        public override IEnumerable<Property> ExtractAllProperties()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

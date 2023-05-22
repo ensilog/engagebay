@@ -1,5 +1,7 @@
 ﻿using Ensilog.Engagebay.Companies;
+using Ensilog.Engagebay.Companies.Exceptions;
 using Ensilog.Engagebay.Properties;
+using Ensilog.Engagebay.Tags;
 using FluentAssertions;
 using System;
 using System.Collections.Generic;
@@ -20,37 +22,7 @@ namespace Ensilog.Engagebay.Tests.Companies
                 Name = "www.engagebay.com",
                 Url = "www.engagebay.com",
                 CreatedTime = DateTime.Now,
-                OtherProperties = new List<Property>
-            {
-                new Property
-                {
-                    Name = "url",
-                    Value = "www.engagebay.com",
-                    FieldType = "TEXT",
-                    IsSearchable = false,
-                    Type = "SYSTEM"
-                },
-                new Property
-                {
-                    Name = "name",
-                    Value = "www.engagebay.com",
-                    FieldType = "TEXT",
-                    IsSearchable = false,
-                    Type = "SYSTEM"
-                },
-                new Property
-                {
-                    Name = "email",
-                    Value = "",
-                    FieldType = "TEXT",
-                    IsSearchable = false,
-                    Type = "SYSTEM"
-                }
-            },
-                Tags = new List<string>(),
-                ContactIds = new List<ulong>(),
-                EntityGroupName = "company",
-                CompanyIds = new List<ulong>()
+                Tags = new List<Tag> { new Tag("testtag1"), new Tag("testtag2") }
             };
 
             // Act
@@ -58,7 +30,9 @@ namespace Ensilog.Engagebay.Tests.Companies
 
             // Assert
             request.Method.Should().Be(RestSharp.Method.Post);
-            request.Body.Should().BeEquivalentTo(company);
+            request.Body.Properties.Should().BeEquivalentTo(company.ExtractAllProperties());
+            request.Body.Tags.Should().BeEquivalentTo(company.Tags);
+            request.ContentType.Should().Be("application/json");
             request.Uri.Should().Be("/dev/api/panel/companies/company");
         }
 
@@ -72,7 +46,7 @@ namespace Ensilog.Engagebay.Tests.Companies
             Action act = () => new CreateCompany(company);
 
             // Assert
-            act.Should().Throw<ArgumentNullException>();
+            act.Should().Throw<CompanyNullException>();
         }
     }
 
