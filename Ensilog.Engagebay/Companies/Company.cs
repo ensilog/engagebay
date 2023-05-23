@@ -35,7 +35,7 @@ namespace Ensilog.Engagebay.Companies
         public Address Address { get; set; }
 
         [JsonPropertyName("owner_id")]
-        public string OwnerId { get; set; }
+        public long OwnerId { get; set; }
 
         public override IEnumerable<Property> ExtractAllProperties()
         {
@@ -59,11 +59,16 @@ namespace Ensilog.Engagebay.Companies
             if (Website != null)
                 yield return CompanyKnownProperties.Website.WithValue(Website);
 
-            if (OwnerId != null)
+            if (OwnerId != default)
                 yield return CompanyKnownProperties.OwnerId.WithValue(OwnerId);
 
             if (Address != null)
                 yield return ContactKnownProperties.Address.WithValue(JsonSerializer.Serialize(Address));
+        }
+
+        public override string ToString()
+        {
+            return $"{Name} ({Email})";
         }
     }
 }
