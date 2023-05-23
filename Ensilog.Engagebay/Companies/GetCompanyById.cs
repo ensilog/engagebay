@@ -11,7 +11,7 @@ namespace Ensilog.Engagebay.Companies
 
         public GetCompanyById(ulong id)
         {
-            if (id <= 0)
+            if (id == default)
             {
                 throw new CompanyIdInvalidException();
             }
