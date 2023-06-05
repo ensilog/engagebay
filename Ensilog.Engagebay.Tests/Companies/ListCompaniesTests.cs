@@ -103,7 +103,7 @@ namespace Ensilog.Engagebay.Tests.Companies
         [Theory]
         [InlineData(0)]
         [InlineData(1001)]
-1        public void PageSize_Should_BeInRange(int pageSize)
+        public void PageSize_Should_BeInRange(int pageSize)
         {
             Action action = () => new ListCompanies(pageSize);
 
