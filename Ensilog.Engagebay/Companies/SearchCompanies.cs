@@ -22,7 +22,7 @@ namespace Ensilog.Engagebay.Companies
         {
             if (string.IsNullOrEmpty(searchText))
                 throw new SearchTextNullException(nameof(searchText));
-            if (page_size == 0 || page_size > 1000)
+            if (page_size <= 0 || page_size > 1000)
                 throw new PageSizeInvalidException();
 
             SearchText = searchText;
