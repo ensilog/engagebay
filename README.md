@@ -93,8 +93,8 @@ Here is the status of the implemented endpoints in this wrapper. ✅ means that 
 | [Get company by id](https://github.com/engagebay/restapi#24-get-company-by-id) | | ✅ |
 | [Delete single company](https://github.com/engagebay/restapi#25-delete-single-company) | | ✅ |
 | [Search companies](https://github.com/engagebay/restapi#26-search-companies) | | ✅ |
-| [Add contact to company by contact Id](https://github.com/engagebay/restapi#27-add-contact-to-company-by-contact-id) | | ❌ |
-| [Add contact to company using email address](https://github.com/engagebay/restapi#28-add-contact-to-company-using-email-address) | | ❌ |
+| [Add contact to company by contact Id](https://github.com/engagebay/restapi#27-add-contact-to-company-by-contact-id) | | ✅ |
+| [Add contact to company using email address](https://github.com/engagebay/restapi#28-add-contact-to-company-using-email-address) | | ✅ |
 | **3. Deals** | | |
 | [Listing deals](https://github.com/engagebay/restapi#31-listing-deals) | | ❌ |
 | [Get deal by its ID](https://github.com/engagebay/restapi#32-get-deal-by-its-id) | | ❌ |
