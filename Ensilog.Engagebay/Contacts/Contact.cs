@@ -13,20 +13,6 @@ namespace Ensilog.Engagebay.Contacts
 {
     public class Contact : PageableObject
     {
-        [JsonPropertyName("id")]
-        public ulong Id { get; set; }
-
-        [JsonPropertyName("created_time")]
-        [JsonConverter(typeof(UnixEpochDateTimeConverter))]
-        public DateTime CreatedTime { get; set; }
-
-        [JsonPropertyName("updated_time")]
-        [JsonConverter(typeof(UnixEpochDateTimeConverter))]
-        public DateTime UpdatedTime { get; set; }
-
-        [JsonPropertyName("score")]
-        public int? Score { get; set; }
-
         [JsonPropertyName("name")]
         public string FirstName { get; set; }
 
@@ -49,12 +35,6 @@ namespace Ensilog.Engagebay.Contacts
         [JsonConverter(typeof(AddressStringToAddressDataConverter))]
         public Address Address { get; set; }
 
-        [JsonPropertyName("tags")]
-        public IEnumerable<Tag> Tags { get; set; }
-
-        [JsonPropertyName("properties")]
-        public IEnumerable<Property> OtherProperties { get; set; }
-
         [JsonPropertyName("companyIds")]
         public IEnumerable<long> CompanyIds { get; set; }
 
@@ -63,8 +43,13 @@ namespace Ensilog.Engagebay.Contacts
             return $"Contact #{Id} - {FirstName} {LastName} - {Email}";
         }
 
-        public IEnumerable<Property> ExtractAllProperties()
+        public override IEnumerable<Property> ExtractAllProperties()
         {
+            foreach (var pr in base.ExtractAllProperties())
+            {
+                yield return pr;
+            }
+
             if (FirstName != null)
                 yield return ContactKnownProperties.FirstName.WithValue(FirstName);
 
@@ -77,22 +62,14 @@ namespace Ensilog.Engagebay.Contacts
             if (Phone != null)
                 yield return ContactKnownProperties.PhoneWork.WithValue(Phone);
 
-            if (Address != null)
-                yield return ContactKnownProperties.Address.WithValue(JsonSerializer.Serialize(Address));
-
             if (Role != null)
                 yield return ContactKnownProperties.Role.WithValue(Role);
 
+            if(Address != null)
+                yield return ContactKnownProperties.Address.WithValue(JsonSerializer.Serialize(Address));
+
             if (Website != null)
                 yield return ContactKnownProperties.WebsiteUrl.WithValue(Website);
-
-            if (OtherProperties != null && OtherProperties.Any())
-            {
-                foreach (var property in OtherProperties)
-                {
-                    yield return property;
-                }
-            }
         }
     }
 }

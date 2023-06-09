@@ -1,15 +1,14 @@
 ﻿using Ensilog.Engagebay.Abstractions;
 using Ensilog.Engagebay.Json;
+using Ensilog.Engagebay.Properties;
 using System;
+using System.Collections.Generic;
 using System.Text.Json.Serialization;
 
 namespace Ensilog.Engagebay.Notes
 {
     public class Note : PageableObject
     {
-        [JsonPropertyName("id")]
-        public long Id { get; set; }
-
         [JsonPropertyName("parentId")]
         public long ParentId { get; set; }
 
@@ -31,18 +30,15 @@ namespace Ensilog.Engagebay.Notes
         [JsonPropertyName("type")]
         public string Type { get; set; }
 
-        [JsonPropertyName("created_time")]
-        [JsonConverter(typeof(UnixEpochDateTimeConverter))]
-        public DateTime CreatedTime { get; set; }
-
-        [JsonPropertyName("updated_time")]
-        [JsonConverter(typeof(UnixEpochDateTimeConverter))]
-        public DateTime UpdatedTime { get; set; }
-
         [JsonPropertyName("source")]
         public string Source { get; set; }
 
         [JsonPropertyName("createFollowUpTask")]
         public bool CreateFollowUpTask { get; set; }
+
+        public override IEnumerable<Property> ExtractAllProperties()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
