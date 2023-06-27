@@ -51,7 +51,7 @@ namespace Ensilog.Engagebay.Abstractions
         }
 
 
-        protected string GeneratePageConfigString()
+        protected virtual string GeneratePageConfigString()
         {
             return $"page_size={_pageSize}&sort_key={(_sortAscending ? "" : "-")}{_sortKey}" + (!string.IsNullOrEmpty(_cursor) ? $"&cursor={_cursor}" : "");
         }
